@@ -1147,6 +1147,184 @@ export default function ProjectionsPage() {
               </div>
             </div>
 
+            {/* Certifications */}
+            <div className="bg-white border border-charcoal/10 rounded-xl overflow-hidden">
+              <div className="bg-blue-900 px-6 py-4">
+                <h2 className="font-serif text-xl text-cream">Required & Valuable Certifications</h2>
+                <p className="text-cream/60 text-sm mt-1">What credentials are needed to operate credibly</p>
+              </div>
+              <div className="p-6 space-y-6">
+                {/* Phase 1 - Essential */}
+                <div>
+                  <div className="flex items-center gap-2 mb-3">
+                    <span className="bg-red-100 text-red-800 text-xs font-medium px-2 py-1 rounded">PHASE 1</span>
+                    <span className="font-medium text-charcoal">Essential / Required (First 6 Months)</span>
+                    <span className="text-charcoal-light text-sm">~$1,700-2,100</span>
+                  </div>
+                  <div className="overflow-x-auto">
+                    <table className="w-full text-sm">
+                      <thead>
+                        <tr className="text-left border-b border-charcoal/10 text-charcoal-light">
+                          <th className="pb-2 font-medium">Certification</th>
+                          <th className="pb-2 font-medium">Issuing Body</th>
+                          <th className="pb-2 font-medium">Cost</th>
+                          <th className="pb-2 font-medium">Time</th>
+                          <th className="pb-2 font-medium">Renewal</th>
+                        </tr>
+                      </thead>
+                      <tbody className="text-charcoal-light">
+                        <tr className="border-b border-charcoal/5">
+                          <td className="py-2 font-medium text-charcoal">C-NRPP Radon Measurement</td>
+                          <td className="py-2">C-NRPP / Health Canada</td>
+                          <td className="py-2">$700-1,000</td>
+                          <td className="py-2">2-3 weeks</td>
+                          <td className="py-2">2 years, 20 CE credits</td>
+                        </tr>
+                        <tr className="border-b border-charcoal/5">
+                          <td className="py-2 font-medium text-charcoal">IICRC WRT (Water Damage)</td>
+                          <td className="py-2">IICRC</td>
+                          <td className="py-2">$530-630</td>
+                          <td className="py-2">3 days</td>
+                          <td className="py-2">3 years</td>
+                        </tr>
+                        <tr>
+                          <td className="py-2 font-medium text-charcoal">InterNACHI CPI</td>
+                          <td className="py-2">InterNACHI</td>
+                          <td className="py-2">$499/year</td>
+                          <td className="py-2">2-4 weeks self-study</td>
+                          <td className="py-2">Annual</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+
+                {/* Phase 2 - Core */}
+                <div>
+                  <div className="flex items-center gap-2 mb-3">
+                    <span className="bg-amber-100 text-amber-800 text-xs font-medium px-2 py-1 rounded">PHASE 2</span>
+                    <span className="font-medium text-charcoal">Core Competency (6-12 Months)</span>
+                    <span className="text-charcoal-light text-sm">~$3,100-4,300</span>
+                  </div>
+                  <div className="overflow-x-auto">
+                    <table className="w-full text-sm">
+                      <thead>
+                        <tr className="text-left border-b border-charcoal/10 text-charcoal-light">
+                          <th className="pb-2 font-medium">Certification</th>
+                          <th className="pb-2 font-medium">Issuing Body</th>
+                          <th className="pb-2 font-medium">Cost</th>
+                          <th className="pb-2 font-medium">Time</th>
+                          <th className="pb-2 font-medium">Notes</th>
+                        </tr>
+                      </thead>
+                      <tbody className="text-charcoal-light">
+                        <tr className="border-b border-charcoal/5">
+                          <td className="py-2 font-medium text-charcoal">IICRC AMRT (Mold)</td>
+                          <td className="py-2">IICRC</td>
+                          <td className="py-2">$1,100-1,300</td>
+                          <td className="py-2">4 days</td>
+                          <td className="py-2">Requires WRT first</td>
+                        </tr>
+                        <tr className="border-b border-charcoal/5">
+                          <td className="py-2 font-medium text-charcoal">CIE (Indoor Environmentalist)</td>
+                          <td className="py-2">ACAC</td>
+                          <td className="py-2">$500</td>
+                          <td className="py-2">Exam scheduling</td>
+                          <td className="py-2">2 years experience required</td>
+                        </tr>
+                        <tr>
+                          <td className="py-2 font-medium text-charcoal">OAHI RHI (Ontario)</td>
+                          <td className="py-2">OAHI</td>
+                          <td className="py-2">$1,500-2,500</td>
+                          <td className="py-2">6-12 months</td>
+                          <td className="py-2">For home inspection lead-gen play</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+
+                {/* Phase 3 - Premium */}
+                <div>
+                  <div className="flex items-center gap-2 mb-3">
+                    <span className="bg-green-100 text-green-800 text-xs font-medium px-2 py-1 rounded">PHASE 3</span>
+                    <span className="font-medium text-charcoal">Premium Positioning (Year 2+)</span>
+                    <span className="text-charcoal-light text-sm">~$5,950-7,700</span>
+                  </div>
+                  <div className="overflow-x-auto">
+                    <table className="w-full text-sm">
+                      <thead>
+                        <tr className="text-left border-b border-charcoal/10 text-charcoal-light">
+                          <th className="pb-2 font-medium">Certification</th>
+                          <th className="pb-2 font-medium">Issuing Body</th>
+                          <th className="pb-2 font-medium">Cost</th>
+                          <th className="pb-2 font-medium">Time</th>
+                          <th className="pb-2 font-medium">Why</th>
+                        </tr>
+                      </thead>
+                      <tbody className="text-charcoal-light">
+                        <tr className="border-b border-charcoal/5">
+                          <td className="py-2 font-medium text-charcoal">CMI/CMC (Microbial)</td>
+                          <td className="py-2">ACAC</td>
+                          <td className="py-2">$500-700</td>
+                          <td className="py-2">Exam</td>
+                          <td className="py-2">Premium mold credentials</td>
+                        </tr>
+                        <tr className="border-b border-charcoal/5">
+                          <td className="py-2 font-medium text-charcoal">BPI Building Analyst</td>
+                          <td className="py-2">BPI</td>
+                          <td className="py-2">$1,950</td>
+                          <td className="py-2">1-2 weeks</td>
+                          <td className="py-2">Building science credibility</td>
+                        </tr>
+                        <tr className="border-b border-charcoal/5">
+                          <td className="py-2 font-medium text-charcoal">ITC Level I Thermography</td>
+                          <td className="py-2">ITC</td>
+                          <td className="py-2">$2,000-3,000</td>
+                          <td className="py-2">4 days</td>
+                          <td className="py-2">Thermal imaging for moisture/insulation</td>
+                        </tr>
+                        <tr className="border-b border-charcoal/5">
+                          <td className="py-2 font-medium text-charcoal">C-NRPP Radon Mitigation</td>
+                          <td className="py-2">C-NRPP</td>
+                          <td className="py-2">$1,500-2,000</td>
+                          <td className="py-2">1-2 weeks</td>
+                          <td className="py-2">If offering mitigation services</td>
+                        </tr>
+                        <tr>
+                          <td className="py-2 font-medium text-charcoal">WELL AP</td>
+                          <td className="py-2">IWBI</td>
+                          <td className="py-2">$299 USD</td>
+                          <td className="py-2">Self-study + exam</td>
+                          <td className="py-2">Luxury wellness positioning</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+
+                {/* Summary */}
+                <div className="bg-blue-50 p-4 rounded-lg">
+                  <p className="font-medium text-blue-900 mb-2">Investment Summary</p>
+                  <div className="grid md:grid-cols-3 gap-4 text-sm">
+                    <div>
+                      <p className="text-blue-800 font-medium">Phase 1 (Essential)</p>
+                      <p className="text-blue-700">$1,700-2,100 • 2-3 months</p>
+                    </div>
+                    <div>
+                      <p className="text-blue-800 font-medium">Phase 1+2 (Credible)</p>
+                      <p className="text-blue-700">$4,800-6,400 • 12 months</p>
+                    </div>
+                    <div>
+                      <p className="text-blue-800 font-medium">All Phases (Premium)</p>
+                      <p className="text-blue-700">$10,750-14,100 • 24 months</p>
+                    </div>
+                  </div>
+                  <p className="text-xs text-blue-600 mt-3">Note: NRPP certification required in 25 US states if expanding there. Water quality analyst certification required for regulated systems in Ontario.</p>
+                </div>
+              </div>
+            </div>
+
             {/* Model Assumptions Summary */}
             <div className="bg-cream-dark p-6 rounded-xl">
               <h2 className="font-serif text-xl text-charcoal mb-4">Current Model Assumptions</h2>
