@@ -826,12 +826,17 @@ export default function ProjectionsPage() {
                         Other operators pay to use the Haven system. Recurring revenue from licensing.
                       </p>
                       <ul className="text-sm text-charcoal-light space-y-1">
-                        <li>• Franchise fee + royalty on revenue</li>
+                        <li>• $25-50K franchise fee + 5-6% royalty on revenue</li>
                         <li>• Haven provides: brand, training, software, leads</li>
                         <li>• Franchisees operate locally</li>
                         <li>• Scales without proportional headcount</li>
                         <li>• Requires: proven playbook, strong unit economics, legal setup</li>
                       </ul>
+                      <div className="mt-4 p-3 bg-amber-50 rounded-lg">
+                        <p className="text-xs text-amber-800 font-medium mb-1">Revenue Potential</p>
+                        <p className="text-sm text-amber-900">10 franchises @ $400K avg revenue = <strong>$240K/yr royalties</strong> + franchise fees</p>
+                        <p className="text-sm text-amber-900">25 franchises = <strong>$600K/yr royalties</strong>, mostly passive</p>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -852,6 +857,12 @@ export default function ProjectionsPage() {
                         <li>• Software licensing to inspectors, contractors, property managers</li>
                         <li>• Haven becomes a verb: "Have you Haven'd your home?"</li>
                       </ul>
+                      <div className="mt-4 p-3 bg-cream/10 rounded-lg">
+                        <p className="text-xs text-sage font-medium mb-1">Revenue Potential</p>
+                        <p className="text-sm text-cream/90">Certification fees: $50-100/home × 10K homes/yr = <strong>$500K-1M/yr</strong></p>
+                        <p className="text-sm text-cream/90">Software licensing to inspectors: $100/mo × 500 users = <strong>$600K/yr</strong></p>
+                        <p className="text-sm text-cream/90">Combined with franchise royalties: <strong>$2M+/yr</strong> potential</p>
+                      </div>
                       <p className="text-sage text-sm mt-4 font-medium">
                         The long game. Requires years of brand building and regulatory relationships.
                       </p>
