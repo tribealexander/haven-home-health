@@ -67,6 +67,14 @@ const PRODUCTS = {
     name: "Circadian Lighting",
     desc: "Add-on service: smart lighting installation that shifts color temperature throughout the day. Morning: bright/energizing (5000K), evening: warm/relaxing (2700K), night: sleep-ready (2200K). One-time install fee.",
   },
+  airPurifier: {
+    name: "Air Purifier",
+    desc: "Add-on: HEPA air purifier installation. Recommended for homes with elevated PM2.5, VOCs, or allergy concerns. Includes unit, installation, and setup. One-time fee.",
+  },
+  waterFilter: {
+    name: "Water Filtration",
+    desc: "Add-on: whole-house or under-sink water filtration system. Recommended for homes with elevated contaminants, chlorine, or hard water. Includes system, installation, and setup. One-time fee.",
+  },
 };
 
 // Tooltip component
@@ -99,6 +107,8 @@ export default function ProjectionsPage() {
   const [assessmentsPerMonth, setAssessmentsPerMonth] = useState(8);
   const [percentComplete, setPercentComplete] = useState(50);
   const [percentLighting, setPercentLighting] = useState(20);
+  const [percentAirPurifier, setPercentAirPurifier] = useState(15);
+  const [percentWaterFilter, setPercentWaterFilter] = useState(10);
   const [careRetention, setCareRetention] = useState(80);
   const [monthsToSteady, setMonthsToSteady] = useState(6);
 
@@ -107,6 +117,8 @@ export default function ProjectionsPage() {
   const [priceComplete, setPriceComplete] = useState(2995);
   const [priceCareMo, setPriceCareMo] = useState(149);
   const [priceLighting, setPriceLighting] = useState(795);
+  const [priceAirPurifier, setPriceAirPurifier] = useState(595);
+  const [priceWaterFilter, setPriceWaterFilter] = useState(895);
 
   // ===== REFERRAL PARTNER REVENUE =====
   const [refRadonPercent, setRefRadonPercent] = useState(25);
@@ -146,6 +158,12 @@ export default function ProjectionsPage() {
 
   const [cogsLightingHardware, setCogsLightingHardware] = useState(150);
   const [cogsLightingInstall, setCogsLightingInstall] = useState(50);
+
+  const [cogsAirPurifierHardware, setCogsAirPurifierHardware] = useState(250);
+  const [cogsAirPurifierInstall, setCogsAirPurifierInstall] = useState(50);
+
+  const [cogsWaterFilterHardware, setCogsWaterFilterHardware] = useState(350);
+  const [cogsWaterFilterInstall, setCogsWaterFilterInstall] = useState(100);
 
   // ===== OPERATING EXPENSES (MONTHLY) =====
   const [opexInsuranceLiability, setOpexInsuranceLiability] = useState(250);
@@ -198,6 +216,8 @@ export default function ProjectionsPage() {
   const cogsComplete = cogsAssessment + cogsCompleteSensors + cogsCompleteAdditional;
   const cogsCareMo = cogsCareMoService + cogsCareMoSoftware;
   const cogsLighting = cogsLightingHardware + cogsLightingInstall;
+  const cogsAirPurifier = cogsAirPurifierHardware + cogsAirPurifierInstall;
+  const cogsWaterFilter = cogsWaterFilterHardware + cogsWaterFilterInstall;
 
   const opexInsurance = opexInsuranceLiability + opexInsuranceEO + opexInsuranceVehicle;
   const opexVehicle = opexVehicleLease + opexVehicleFuel + opexVehicleMaintenance;
@@ -223,31 +243,37 @@ export default function ProjectionsPage() {
     const standalone = assessmentsPerMonth * (1 - percentComplete / 100);
     const complete = assessmentsPerMonth * (percentComplete / 100);
     const lighting = assessmentsPerMonth * (percentLighting / 100);
+    const airPurifier = assessmentsPerMonth * (percentAirPurifier / 100);
+    const waterFilter = assessmentsPerMonth * (percentWaterFilter / 100);
 
     const revenue = {
       standalone: standalone * priceAssessment,
       complete: complete * priceComplete,
       lighting: lighting * priceLighting,
+      airPurifier: airPurifier * priceAirPurifier,
+      waterFilter: waterFilter * priceWaterFilter,
       referral: assessmentsPerMonth * refPerAssessment.total,
       total: 0,
     };
-    revenue.total = revenue.standalone + revenue.complete + revenue.lighting + revenue.referral;
+    revenue.total = revenue.standalone + revenue.complete + revenue.lighting + revenue.airPurifier + revenue.waterFilter + revenue.referral;
 
     const cogs = {
       standalone: standalone * cogsAssessment,
       complete: complete * cogsComplete,
       lighting: lighting * cogsLighting,
+      airPurifier: airPurifier * cogsAirPurifier,
+      waterFilter: waterFilter * cogsWaterFilter,
       total: 0,
     };
-    cogs.total = cogs.standalone + cogs.complete + cogs.lighting;
+    cogs.total = cogs.standalone + cogs.complete + cogs.lighting + cogs.airPurifier + cogs.waterFilter;
 
     const grossProfit = revenue.total - cogs.total;
     const grossMargin = revenue.total > 0 ? (grossProfit / revenue.total) * 100 : 0;
     const netProfit = grossProfit - opexTotal;
     const netMargin = revenue.total > 0 ? (netProfit / revenue.total) * 100 : 0;
 
-    return { standalone, complete, lighting, revenue, cogs, grossProfit, grossMargin, netProfit, netMargin };
-  }, [assessmentsPerMonth, percentComplete, percentLighting, priceAssessment, priceComplete, priceLighting, cogsAssessment, cogsComplete, cogsLighting, opexTotal, refPerAssessment]);
+    return { standalone, complete, lighting, airPurifier, waterFilter, revenue, cogs, grossProfit, grossMargin, netProfit, netMargin };
+  }, [assessmentsPerMonth, percentComplete, percentLighting, percentAirPurifier, percentWaterFilter, priceAssessment, priceComplete, priceLighting, priceAirPurifier, priceWaterFilter, cogsAssessment, cogsComplete, cogsLighting, cogsAirPurifier, cogsWaterFilter, opexTotal, refPerAssessment]);
 
   // ===== YEAR 1 PROJECTION =====
   const yearOne = useMemo(() => {
@@ -260,10 +286,12 @@ export default function ProjectionsPage() {
       const standalone = monthAssessments * (1 - percentComplete / 100);
       const complete = monthAssessments * (percentComplete / 100);
       const lighting = monthAssessments * (percentLighting / 100);
+      const airPurifier = monthAssessments * (percentAirPurifier / 100);
+      const waterFilter = monthAssessments * (percentWaterFilter / 100);
 
-      const newRev = standalone * priceAssessment + complete * priceComplete + lighting * priceLighting;
+      const newRev = standalone * priceAssessment + complete * priceComplete + lighting * priceLighting + airPurifier * priceAirPurifier + waterFilter * priceWaterFilter;
       const referralRev = monthAssessments * refPerAssessment.total;
-      const newCogs = standalone * cogsAssessment + complete * cogsComplete + lighting * cogsLighting;
+      const newCogs = standalone * cogsAssessment + complete * cogsComplete + lighting * cogsLighting + airPurifier * cogsAirPurifier + waterFilter * cogsWaterFilter;
 
       cumulativeCare += complete;
       const careRev = cumulativeCare * priceCareMo;
@@ -280,6 +308,8 @@ export default function ProjectionsPage() {
         standalone,
         complete,
         lighting,
+        airPurifier,
+        waterFilter,
         newRev,
         referralRev,
         careRev,
@@ -308,7 +338,7 @@ export default function ProjectionsPage() {
     );
 
     return { months, totals, endCareSubscribers: cumulativeCare };
-  }, [assessmentsPerMonth, percentComplete, percentLighting, priceAssessment, priceComplete, priceLighting, priceCareMo, cogsAssessment, cogsComplete, cogsLighting, cogsCareMo, opexTotal, monthsToSteady, refPerAssessment]);
+  }, [assessmentsPerMonth, percentComplete, percentLighting, percentAirPurifier, percentWaterFilter, priceAssessment, priceComplete, priceLighting, priceAirPurifier, priceWaterFilter, priceCareMo, cogsAssessment, cogsComplete, cogsLighting, cogsAirPurifier, cogsWaterFilter, cogsCareMo, opexTotal, monthsToSteady, refPerAssessment]);
 
   // ===== YEAR 2 PROJECTION =====
   const yearTwo = useMemo(() => {
@@ -316,7 +346,7 @@ export default function ProjectionsPage() {
     const newCompletePerYear = assessmentsPerMonth * 12 * (percentComplete / 100);
     const avgCareSubscribers = renewingCare + newCompletePerYear / 2;
 
-    const monthlyNewRev = monthly.revenue.standalone + monthly.revenue.complete + monthly.revenue.lighting;
+    const monthlyNewRev = monthly.revenue.standalone + monthly.revenue.complete + monthly.revenue.lighting + monthly.revenue.airPurifier + monthly.revenue.waterFilter;
     const monthlyReferralRev = monthly.revenue.referral;
     const monthlyCareRev = avgCareSubscribers * priceCareMo;
     const monthlyRev = monthlyNewRev + monthlyCareRev + monthlyReferralRev;
@@ -361,17 +391,23 @@ export default function ProjectionsPage() {
       `Haven Complete,"${PRODUCTS.complete.desc}"`,
       `Haven Care,"${PRODUCTS.care.desc}"`,
       `Circadian Lighting,"${PRODUCTS.lighting.desc}"`,
+      `Air Purifier,"${PRODUCTS.airPurifier.desc}"`,
+      `Water Filtration,"${PRODUCTS.waterFilter.desc}"`,
       "",
       "===== PRICING =====",
       `Haven Assessment,${priceAssessment}`,
       `Haven Complete,${priceComplete}`,
       `Haven Care Monthly,${priceCareMo}`,
       `Circadian Lighting,${priceLighting}`,
+      `Air Purifier,${priceAirPurifier}`,
+      `Water Filtration,${priceWaterFilter}`,
       "",
       "===== REVENUE ASSUMPTIONS =====",
       `Assessments per Month (steady state),${assessmentsPerMonth}`,
       `% Buying Complete,${percentComplete}%`,
       `% Adding Lighting,${percentLighting}%`,
+      `% Adding Air Purifier,${percentAirPurifier}%`,
+      `% Adding Water Filter,${percentWaterFilter}%`,
       `Care Retention (Year 2+),${careRetention}%`,
       `Months to Steady State,${monthsToSteady}`,
       "",
@@ -417,6 +453,16 @@ export default function ProjectionsPage() {
       `  Hardware,${cogsLightingHardware}`,
       `  Installation Labor,${cogsLightingInstall}`,
       `  TOTAL Lighting COGS,${cogsLighting}`,
+      "",
+      "Air Purifier Costs",
+      `  Hardware,${cogsAirPurifierHardware}`,
+      `  Installation Labor,${cogsAirPurifierInstall}`,
+      `  TOTAL Air Purifier COGS,${cogsAirPurifier}`,
+      "",
+      "Water Filter Costs",
+      `  Hardware,${cogsWaterFilterHardware}`,
+      `  Installation Labor,${cogsWaterFilterInstall}`,
+      `  TOTAL Water Filter COGS,${cogsWaterFilter}`,
       "",
       "===== OPERATING EXPENSES (MONTHLY) =====",
       "Insurance",
@@ -1138,6 +1184,8 @@ export default function ProjectionsPage() {
                 <SpreadsheetRow label="Haven Complete" tooltip={PRODUCTS.complete.desc} value={priceComplete} onChange={setPriceComplete} prefix="$" />
                 <SpreadsheetRow label="Haven Care (monthly)" tooltip={PRODUCTS.care.desc} value={priceCareMo} onChange={setPriceCareMo} prefix="$" />
                 <SpreadsheetRow label="Circadian Lighting" tooltip={PRODUCTS.lighting.desc} value={priceLighting} onChange={setPriceLighting} prefix="$" />
+                <SpreadsheetRow label="Air Purifier" tooltip={PRODUCTS.airPurifier.desc} value={priceAirPurifier} onChange={setPriceAirPurifier} prefix="$" />
+                <SpreadsheetRow label="Water Filtration" tooltip={PRODUCTS.waterFilter.desc} value={priceWaterFilter} onChange={setPriceWaterFilter} prefix="$" />
 
                 {/* REVENUE ASSUMPTIONS */}
                 <tr className="bg-sage/20 border-b border-charcoal/10">
@@ -1146,6 +1194,8 @@ export default function ProjectionsPage() {
                 <SpreadsheetRow label="Assessments / Month (steady state)" tooltip="Total new customers per month after ramp-up" value={assessmentsPerMonth} onChange={setAssessmentsPerMonth} />
                 <SpreadsheetRow label="% Buying Complete" tooltip="% who buy bundled Complete vs standalone Assessment" value={percentComplete} onChange={setPercentComplete} suffix="%" />
                 <SpreadsheetRow label="% Adding Lighting" tooltip="% who add Circadian Lighting" value={percentLighting} onChange={setPercentLighting} suffix="%" />
+                <SpreadsheetRow label="% Adding Air Purifier" tooltip="% who add Air Purifier" value={percentAirPurifier} onChange={setPercentAirPurifier} suffix="%" />
+                <SpreadsheetRow label="% Adding Water Filter" tooltip="% who add Water Filtration" value={percentWaterFilter} onChange={setPercentWaterFilter} suffix="%" />
                 <SpreadsheetRow label="Care Retention (Year 2+)" tooltip="% of Complete customers who renew Care" value={careRetention} onChange={setCareRetention} suffix="%" />
                 <SpreadsheetRow label="Months to Steady State" tooltip="Ramp-up period" value={monthsToSteady} onChange={setMonthsToSteady} />
 
@@ -1207,7 +1257,7 @@ export default function ProjectionsPage() {
 
                 {/* DIRECT COSTS - CARE & LIGHTING */}
                 <tr className="bg-sage/20 border-b border-charcoal/10">
-                  <td colSpan={2} className="py-2 px-4 font-serif font-medium text-charcoal">DIRECT COSTS - CARE & LIGHTING</td>
+                  <td colSpan={2} className="py-2 px-4 font-serif font-medium text-charcoal">DIRECT COSTS - CARE & ADD-ONS</td>
                 </tr>
                 <SpreadsheetRow label="Care: Service Time (per mo)" value={cogsCareMoService} onChange={setCogsCareMoService} prefix="$" indent />
                 <SpreadsheetRow label="Care: Software/Platform (per mo)" value={cogsCareMoSoftware} onChange={setCogsCareMoSoftware} prefix="$" indent />
@@ -1215,6 +1265,12 @@ export default function ProjectionsPage() {
                 <SpreadsheetRow label="Lighting: Hardware" value={cogsLightingHardware} onChange={setCogsLightingHardware} prefix="$" indent />
                 <SpreadsheetRow label="Lighting: Installation" value={cogsLightingInstall} onChange={setCogsLightingInstall} prefix="$" indent />
                 <SpreadsheetSubtotal label="Lighting COGS" value={cogsLighting} />
+                <SpreadsheetRow label="Air Purifier: Hardware" value={cogsAirPurifierHardware} onChange={setCogsAirPurifierHardware} prefix="$" indent />
+                <SpreadsheetRow label="Air Purifier: Installation" value={cogsAirPurifierInstall} onChange={setCogsAirPurifierInstall} prefix="$" indent />
+                <SpreadsheetSubtotal label="Air Purifier COGS" value={cogsAirPurifier} />
+                <SpreadsheetRow label="Water Filter: Hardware" value={cogsWaterFilterHardware} onChange={setCogsWaterFilterHardware} prefix="$" indent />
+                <SpreadsheetRow label="Water Filter: Installation" value={cogsWaterFilterInstall} onChange={setCogsWaterFilterInstall} prefix="$" indent />
+                <SpreadsheetSubtotal label="Water Filter COGS" value={cogsWaterFilter} />
 
                 {/* OPEX - INSURANCE */}
                 <tr className="bg-sage/20 border-b border-charcoal/10">
@@ -1343,13 +1399,31 @@ export default function ProjectionsPage() {
                       <td className="py-3 text-right">{formatCurrency(monthly.revenue.lighting - monthly.cogs.lighting)}</td>
                       <td className="py-3 text-right">{formatPercent(((priceLighting - cogsLighting) / priceLighting) * 100)}</td>
                     </tr>
+                    <tr className="border-b border-charcoal/5">
+                      <td className="py-3"><Tooltip content={PRODUCTS.airPurifier.desc}>Air Purifier</Tooltip></td>
+                      <td className="py-3 text-right">{monthly.airPurifier.toFixed(1)}</td>
+                      <td className="py-3 text-right">{formatCurrency(priceAirPurifier)}</td>
+                      <td className="py-3 text-right">{formatCurrency(monthly.revenue.airPurifier)}</td>
+                      <td className="py-3 text-right">{formatCurrency(monthly.cogs.airPurifier)}</td>
+                      <td className="py-3 text-right">{formatCurrency(monthly.revenue.airPurifier - monthly.cogs.airPurifier)}</td>
+                      <td className="py-3 text-right">{formatPercent(((priceAirPurifier - cogsAirPurifier) / priceAirPurifier) * 100)}</td>
+                    </tr>
+                    <tr className="border-b border-charcoal/5">
+                      <td className="py-3"><Tooltip content={PRODUCTS.waterFilter.desc}>Water Filtration</Tooltip></td>
+                      <td className="py-3 text-right">{monthly.waterFilter.toFixed(1)}</td>
+                      <td className="py-3 text-right">{formatCurrency(priceWaterFilter)}</td>
+                      <td className="py-3 text-right">{formatCurrency(monthly.revenue.waterFilter)}</td>
+                      <td className="py-3 text-right">{formatCurrency(monthly.cogs.waterFilter)}</td>
+                      <td className="py-3 text-right">{formatCurrency(monthly.revenue.waterFilter - monthly.cogs.waterFilter)}</td>
+                      <td className="py-3 text-right">{formatPercent(((priceWaterFilter - cogsWaterFilter) / priceWaterFilter) * 100)}</td>
+                    </tr>
                     <tr className="font-medium bg-charcoal/5">
                       <td className="py-3 px-2 rounded-l">Subtotal Services</td>
                       <td className="py-3 text-right">{assessmentsPerMonth}</td>
                       <td className="py-3 text-right">—</td>
-                      <td className="py-3 text-right">{formatCurrency(monthly.revenue.standalone + monthly.revenue.complete + monthly.revenue.lighting)}</td>
+                      <td className="py-3 text-right">{formatCurrency(monthly.revenue.standalone + monthly.revenue.complete + monthly.revenue.lighting + monthly.revenue.airPurifier + monthly.revenue.waterFilter)}</td>
                       <td className="py-3 text-right">{formatCurrency(monthly.cogs.total)}</td>
-                      <td className="py-3 text-right">{formatCurrency(monthly.revenue.standalone + monthly.revenue.complete + monthly.revenue.lighting - monthly.cogs.total)}</td>
+                      <td className="py-3 text-right">{formatCurrency(monthly.revenue.standalone + monthly.revenue.complete + monthly.revenue.lighting + monthly.revenue.airPurifier + monthly.revenue.waterFilter - monthly.cogs.total)}</td>
                       <td className="py-3 text-right rounded-r">—</td>
                     </tr>
                   </tbody>
