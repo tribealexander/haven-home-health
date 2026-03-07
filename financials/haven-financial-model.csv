@@ -1,0 +1,119 @@
+HAVEN HOME HEALTH - FINANCIAL PROJECTION MODEL
+Last Updated,2026-03-07
+Notes,"Edit yellow cells to run scenarios. All figures in CAD, pre-tax."
+
+===== PRICING (from website) =====
+Product,Price,Notes
+Haven Assessment,$1495,Standalone assessment
+Haven Complete,$2995,Assessment + Year 1 of Haven Care
+Haven Care Monthly,$149,Ongoing after Year 1
+Circadian Lighting Add-on,$795,Optional add-on
+
+===== COST ASSUMPTIONS =====
+Cost Tier,Assessment COGS,Complete COGS,Care Monthly COGS,Notes
+Low (Local/Lean),$300,$450,$25,"Minimal travel, basic equipment"
+Mid (Standard),$500,$700,$40,"Moderate travel, quality equipment, lab fees"
+High (Premium),$700,$950,$60,"Premium equipment, longer travel, full lab panel"
+
+===== SCENARIO INPUTS (EDIT THESE) =====
+Input,Value,Notes
+Assessments per Month,8,Total new customers/month at steady state
+% Buying Complete,50%,vs standalone Assessment
+% Adding Circadian Lighting,20%,Add-on attachment rate
+Haven Care Retention (Year 2+),80%,% of Complete customers who continue Care
+Cost Tier,Mid,Low / Mid / High
+Months to Steady State,6,Ramp-up period
+
+===== MONTHLY REVENUE AT STEADY STATE =====
+Line Item,Units,Price,Monthly Revenue
+Standalone Assessments,4,$1495,$5980
+Haven Complete,4,$2995,$11980
+Circadian Lighting Add-ons,1.6,$795,$1272
+Total New Customer Revenue,,,,$19232
+Haven Care Renewals (cumulative Year 2+),*see below*,$149,*builds over time*
+
+===== MONTHLY COSTS AT STEADY STATE =====
+Line Item,Units,Cost,Monthly Cost
+Standalone Assessment COGS,4,$500,$2000
+Haven Complete COGS,4,$700,$2800
+Circadian Lighting COGS,1.6,$200,$320
+Haven Care Service COGS,*cumulative*,$40,*builds over time*
+Total COGS,,,,$5120
+
+===== MONTHLY PROFIT AT STEADY STATE (New Customers Only) =====
+Gross Revenue,,,$19232
+Total COGS,,,$5120
+Gross Profit,,,$14112
+Gross Margin,,,73%
+
+===== 12-MONTH PROJECTION (Ramp-Up to Steady State) =====
+Month,Assessments,Standalone,Complete,Circadian,New Rev,Assessment COGS,Complete COGS,Lighting COGS,Total COGS,Gross Profit,Care Subscribers,Care Rev,Care COGS,Total Profit
+1,2,1,1,0.4,$5262,$500,$700,$80,$1280,$3982,1,$149,$40,$4091
+2,3,1.5,1.5,0.6,$7893,$750,$1050,$120,$1920,$5973,2.5,$373,$100,$6246
+3,4,2,2,0.8,$10524,$1000,$1400,$160,$2560,$7964,4.5,$671,$180,$8455
+4,5,2.5,2.5,1,$13155,$1250,$1750,$200,$3200,$9955,7,$1043,$280,$10718
+5,6,3,3,1.2,$15786,$1500,$2100,$240,$3840,$11946,10,$1490,$400,$13036
+6,7,3.5,3.5,1.4,$18417,$1750,$2450,$280,$4480,$13937,13.5,$2012,$540,$15408
+7,8,4,4,1.6,$19232,$2000,$2800,$320,$5120,$14112,17.5,$2608,$700,$16019
+8,8,4,4,1.6,$19232,$2000,$2800,$320,$5120,$14112,21.5,$3203,$860,$16455
+9,8,4,4,1.6,$19232,$2000,$2800,$320,$5120,$14112,25.5,$3799,$1020,$16890
+10,8,4,4,1.6,$19232,$2000,$2800,$320,$5120,$14112,29.5,$4396,$1180,$17327
+11,8,4,4,1.6,$19232,$2000,$2800,$320,$5120,$14112,33.5,$4993,$1340,$17765
+12,8,4,4,1.6,$19232,$2000,$2800,$320,$5120,$14112,37.5,$5588,$1500,$18200
+
+===== YEAR 1 TOTALS =====
+Metric,Value
+Total Assessments,75
+Total New Customer Revenue,$195429
+Total Care Revenue (cumulative),$30322
+Total Revenue,$225751
+Total COGS,$49440
+Gross Profit,$176311
+Gross Margin,78%
+
+===== YEAR 2 PROJECTION (Steady State + Care Renewals) =====
+Assumptions,Value
+Monthly New Assessments,8
+Complete Customers Renewing Care (80%),30
+New Complete Customers Adding to Care,48
+End of Year 2 Care Subscribers,78
+
+Monthly Recurring,Value
+New Customer Revenue,$19232
+Care Renewal Revenue (avg),$8702
+Total Monthly Revenue,$27934
+Total Monthly COGS,$8604
+Monthly Gross Profit,$19330
+
+Year 2 Totals,Value
+Total Revenue,$335208
+Total COGS,$103248
+Gross Profit,$231960
+Gross Margin,69%
+
+===== SCENARIO COMPARISON =====
+Scenario,Assessments/Mo,% Complete,Cost Tier,Year 1 Profit,Year 2 Profit
+Conservative,4,30%,High,$62400,$98000
+Base Case,8,50%,Mid,$176311,$231960
+Aggressive,12,70%,Low,$312000,$425000
+
+===== SENSITIVITY: ASSESSMENTS PER MONTH =====
+Assessments/Mo,Year 1 Revenue,Year 1 Profit,Year 2 Profit
+4,$112875,$85000,$115000
+6,$169313,$130000,$175000
+8,$225751,$176311,$231960
+10,$282189,$220000,$295000
+12,$338627,$265000,$360000
+
+===== SENSITIVITY: % COMPLETE VS ASSESSMENT =====
+% Complete,Avg Ticket,Year 1 Revenue,Year 1 Profit
+30%,$1945,$145875,$110000
+40%,$2095,$157125,$125000
+50%,$2245,$168375,$140000
+60%,$2395,$179625,$155000
+70%,$2545,$190875,$170000
+
+===== BREAK-EVEN ANALYSIS =====
+Fixed Monthly Costs (estimate),$3000,"Marketing, insurance, software, etc."
+Required Gross Profit to Break Even,$3000,
+Assessments Needed at Base Case,1.7,Per month to cover fixed costs

@@ -1,26 +1,176 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #FDFBF7;
+  --foreground: #1C1C1C;
+  --cream: #FDFBF7;
+  --cream-dark: #F5F1E8;
+  --sage: #7D8B75;
+  --sage-dark: #5C6B54;
+  --charcoal: #1C1C1C;
+  --charcoal-light: #3D3D3D;
+  --warm-gray: #6B6B6B;
+  --accent: #B8860B;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --color-cream: var(--cream);
+  --color-cream-dark: var(--cream-dark);
+  --color-sage: var(--sage);
+  --color-sage-dark: var(--sage-dark);
+  --color-charcoal: var(--charcoal);
+  --color-charcoal-light: var(--charcoal-light);
+  --color-warm-gray: var(--warm-gray);
+  --color-accent: var(--accent);
+  --font-sans: var(--font-inter);
+  --font-serif: var(--font-playfair);
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans), system-ui, sans-serif;
+}
+
+h1, h2, h3 {
+  font-family: var(--font-serif), Georgia, serif;
+}
+
+/* Subtle paper texture */
+.bg-cream {
+  background-color: var(--cream);
+  background-image:
+    radial-gradient(circle at 25% 25%, rgba(125, 139, 117, 0.02) 0%, transparent 50%),
+    radial-gradient(circle at 75% 75%, rgba(125, 139, 117, 0.02) 0%, transparent 50%);
+}
+
+/* Button styles */
+.btn-primary {
+  display: inline-block;
+  background-color: var(--charcoal);
+  color: var(--cream);
+  padding: 0.75rem 1.5rem;
+  border-radius: 9999px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 8px rgba(28, 28, 28, 0.15);
+}
+
+.btn-primary:hover {
+  background-color: var(--charcoal-light);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(28, 28, 28, 0.2);
+}
+
+.btn-primary:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 6px rgba(28, 28, 28, 0.15);
+}
+
+.btn-secondary {
+  display: inline-block;
+  border: 1px solid rgba(28, 28, 28, 0.2);
+  color: var(--charcoal);
+  padding: 0.75rem 1.5rem;
+  border-radius: 9999px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  background: transparent;
+}
+
+.btn-secondary:hover {
+  background-color: rgba(28, 28, 28, 0.05);
+  border-color: rgba(28, 28, 28, 0.3);
+  transform: translateY(-1px);
+}
+
+.btn-secondary:active {
+  transform: translateY(0);
+}
+
+.btn-sage {
+  display: inline-block;
+  background-color: var(--sage);
+  color: var(--charcoal);
+  padding: 0.75rem 1.5rem;
+  border-radius: 9999px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.btn-sage:hover {
+  background-color: var(--sage-dark);
+  color: var(--cream);
+  transform: translateY(-1px);
+}
+
+.btn-light {
+  display: inline-block;
+  background-color: var(--cream);
+  color: var(--charcoal);
+  padding: 0.75rem 1.5rem;
+  border-radius: 9999px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.btn-light:hover {
+  background-color: var(--cream-dark);
+  transform: translateY(-1px);
+}
+
+/* Card styles */
+.card {
+  background-color: var(--cream-dark);
+  border-radius: 1rem;
+  padding: 2rem;
+  transition: all 0.2s ease;
+}
+
+.card:hover {
+  box-shadow: 0 4px 20px rgba(28, 28, 28, 0.08);
+  transform: translateY(-2px);
+}
+
+.card-dark {
+  background-color: var(--charcoal-light);
+  border-radius: 1rem;
+  padding: 2rem;
+}
+
+/* Icon wrapper */
+.icon-wrapper {
+  width: 3.5rem;
+  height: 3.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(125, 139, 117, 0.15);
+  border-radius: 50%;
+  color: var(--sage);
+}
+
+.icon-wrapper-sm {
+  width: 2.5rem;
+  height: 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(125, 139, 117, 0.2);
+  border-radius: 50%;
+  color: var(--sage);
+}
+
+/* Smooth scroll */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Focus states */
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--sage);
+  outline-offset: 2px;
 }
