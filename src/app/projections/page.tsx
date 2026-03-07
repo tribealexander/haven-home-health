@@ -921,8 +921,8 @@ export default function ProjectionsPage() {
                   <p className="font-medium text-charcoal mb-2">Recommendation</p>
                   <p className="text-sm text-charcoal-light">
                     <strong>Lead with consensus science.</strong> Position emerging topics as "we're watching this" or premium add-ons for clients who ask.
-                    Avoid edge science entirely — if someone asks about EMF, recommend a specialist rather than diluting Haven's credibility.
-                    The luxury market values expertise and trust over comprehensive coverage of fringe concerns.
+                    Edge science (EMF, etc.) can be offered if requested, but with clear caveats about limited research and lack of regulatory consensus.
+                    Transparency about what's proven vs. what's emerging builds trust.
                   </p>
                 </div>
               </div>
