@@ -125,6 +125,10 @@ export default function ProjectionsPage() {
   const [refMoldAvgJob, setRefMoldAvgJob] = useState(4000);
   const [refMoldCommission, setRefMoldCommission] = useState(10);
 
+  const [refNaturopathPercent, setRefNaturopathPercent] = useState(15);
+  const [refNaturopathAvgJob, setRefNaturopathAvgJob] = useState(300);
+  const [refNaturopathCommission, setRefNaturopathCommission] = useState(10);
+
   // ===== LABOR MODEL =====
   const [ownerHourlyRate, setOwnerHourlyRate] = useState(75);
   const [hoursPerAssessment, setHoursPerAssessment] = useState(6);
@@ -215,8 +219,9 @@ export default function ProjectionsPage() {
     const hvac = (refHvacPercent / 100) * refHvacAvgJob * (refHvacCommission / 100);
     const water = (refWaterPercent / 100) * refWaterAvgJob * (refWaterCommission / 100);
     const mold = (refMoldPercent / 100) * refMoldAvgJob * (refMoldCommission / 100);
-    return { radon, hvac, water, mold, total: radon + hvac + water + mold };
-  }, [refRadonPercent, refRadonAvgJob, refRadonCommission, refHvacPercent, refHvacAvgJob, refHvacCommission, refWaterPercent, refWaterAvgJob, refWaterCommission, refMoldPercent, refMoldAvgJob, refMoldCommission]);
+    const naturopath = (refNaturopathPercent / 100) * refNaturopathAvgJob * (refNaturopathCommission / 100);
+    return { radon, hvac, water, mold, naturopath, total: radon + hvac + water + mold + naturopath };
+  }, [refRadonPercent, refRadonAvgJob, refRadonCommission, refHvacPercent, refHvacAvgJob, refHvacCommission, refWaterPercent, refWaterAvgJob, refWaterCommission, refMoldPercent, refMoldAvgJob, refMoldCommission, refNaturopathPercent, refNaturopathAvgJob, refNaturopathCommission]);
 
   // ===== MONTHLY CALCULATIONS =====
   const monthly = useMemo(() => {
@@ -381,6 +386,7 @@ export default function ProjectionsPage() {
       `HVAC/Ventilation,${refHvacPercent}%,${refHvacAvgJob},${refHvacCommission}%,${refPerAssessment.hvac.toFixed(2)}`,
       `Water Treatment,${refWaterPercent}%,${refWaterAvgJob},${refWaterCommission}%,${refPerAssessment.water.toFixed(2)}`,
       `Mold Remediation,${refMoldPercent}%,${refMoldAvgJob},${refMoldCommission}%,${refPerAssessment.mold.toFixed(2)}`,
+      `Naturopath Referral,${refNaturopathPercent}%,${refNaturopathAvgJob},${refNaturopathCommission}%,${refPerAssessment.naturopath.toFixed(2)}`,
       `TOTAL Per Assessment,,,,$${refPerAssessment.total.toFixed(2)}`,
       "",
       "===== LABOR MODEL =====",
@@ -1155,6 +1161,7 @@ export default function ProjectionsPage() {
                 <SpreadsheetRefRow label="HVAC / Ventilation" pct={refHvacPercent} setPct={setRefHvacPercent} job={refHvacAvgJob} setJob={setRefHvacAvgJob} comm={refHvacCommission} setComm={setRefHvacCommission} calc={refPerAssessment.hvac} />
                 <SpreadsheetRefRow label="Water Treatment" pct={refWaterPercent} setPct={setRefWaterPercent} job={refWaterAvgJob} setJob={setRefWaterAvgJob} comm={refWaterCommission} setComm={setRefWaterCommission} calc={refPerAssessment.water} />
                 <SpreadsheetRefRow label="Mold Remediation" pct={refMoldPercent} setPct={setRefMoldPercent} job={refMoldAvgJob} setJob={setRefMoldAvgJob} comm={refMoldCommission} setComm={setRefMoldCommission} calc={refPerAssessment.mold} />
+                <SpreadsheetRefRow label="Naturopath Referral" pct={refNaturopathPercent} setPct={setRefNaturopathPercent} job={refNaturopathAvgJob} setJob={setRefNaturopathAvgJob} comm={refNaturopathCommission} setComm={setRefNaturopathCommission} calc={refPerAssessment.naturopath} />
                 <tr className="bg-amber-100 border-b border-charcoal/10 font-medium">
                   <td className="py-2 px-4 text-charcoal text-sm">Total Referral Revenue / Assessment</td>
                   <td className="py-2 px-4 text-right text-charcoal font-mono">{formatCurrency(refPerAssessment.total)}</td>
@@ -1398,6 +1405,14 @@ export default function ProjectionsPage() {
                       <td className="py-3 text-right">{refMoldCommission}%</td>
                       <td className="py-3 text-right">{formatCurrency(refPerAssessment.mold)}</td>
                       <td className="py-3 text-right">{formatCurrency(refPerAssessment.mold * assessmentsPerMonth)}</td>
+                    </tr>
+                    <tr className="border-b border-charcoal/5">
+                      <td className="py-3">Naturopath Referral</td>
+                      <td className="py-3 text-right">{refNaturopathPercent}%</td>
+                      <td className="py-3 text-right">{formatCurrency(refNaturopathAvgJob)}</td>
+                      <td className="py-3 text-right">{refNaturopathCommission}%</td>
+                      <td className="py-3 text-right">{formatCurrency(refPerAssessment.naturopath)}</td>
+                      <td className="py-3 text-right">{formatCurrency(refPerAssessment.naturopath * assessmentsPerMonth)}</td>
                     </tr>
                     <tr className="font-medium bg-amber-200/50">
                       <td className="py-3 px-2 rounded-l">Total Referral Revenue</td>
