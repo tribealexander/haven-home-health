@@ -117,47 +117,31 @@ export default function Home() {
       </nav>
 
       {/* Hero */}
-      <section className="relative min-h-screen overflow-hidden">
-        {/* Abstract gradient background */}
-        <div className="absolute inset-0">
-          {/* Base warm gradient */}
-          <div className="absolute inset-0 bg-gradient-to-br from-[#F5F0E8] via-cream-dark to-[#E8DFD4]" />
-
-          {/* Soft organic shapes */}
-          <div className="absolute top-20 right-0 w-[600px] h-[600px] rounded-full bg-sage/[0.06] blur-3xl transform translate-x-1/4" />
-          <div className="absolute bottom-0 right-1/4 w-[500px] h-[500px] rounded-full bg-[#D4C4B0]/30 blur-3xl" />
-          <div className="absolute top-1/3 left-1/4 w-[400px] h-[400px] rounded-full bg-sage/[0.04] blur-2xl" />
-        </div>
-
-        {/* Content - Left aligned, upper portion */}
-        <div className="relative z-10 max-w-6xl mx-auto px-6 pt-40 md:pt-48 lg:pt-56">
+      <section className="pt-32 pb-20 px-6">
+        <div className="max-w-4xl mx-auto text-center">
           <AnimatedSection>
-            <h1
-              className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-serif text-charcoal leading-[1.1] tracking-tight max-w-4xl"
-              style={{
-                textShadow: '0 2px 10px rgba(28, 28, 28, 0.06)'
-              }}
-            >
-              Home Health
-              <br />
-              For Now
-              <br />
-              Or Forever
-            </h1>
-          </AnimatedSection>
-
-          <AnimatedSection delay={0.2}>
-            <p className="text-lg text-warm-gray max-w-md mt-8 leading-relaxed">
-              Radon. Air quality. Water contaminants. We find what&apos;s hidden in your home—and help you fix it.
+            <p className="text-sage text-sm tracking-widest uppercase mb-6">
+              Home Health Assessments for Ontario
             </p>
           </AnimatedSection>
-
+          <AnimatedSection delay={0.1}>
+            <h1 className="text-5xl md:text-6xl lg:text-7xl font-serif text-charcoal leading-tight mb-8">
+              Your home should be
+              <br />
+              <span className="italic">your haven.</span>
+            </h1>
+          </AnimatedSection>
+          <AnimatedSection delay={0.2}>
+            <p className="text-xl text-warm-gray max-w-2xl mx-auto mb-10 leading-relaxed">
+              Radon. Air quality. Water contaminants. Most homeowners have no idea what they&apos;re breathing, drinking, or being exposed to daily. We find out—and fix it.
+            </p>
+          </AnimatedSection>
           <AnimatedSection delay={0.3}>
-            <div className="flex flex-col sm:flex-row gap-4 mt-10">
-              <Link href="#contact" className="btn-primary px-8 py-4">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Link href="#contact" className="btn-primary px-8 py-4 text-lg">
                 Book Your Assessment
               </Link>
-              <Link href="#assessment" className="btn-secondary px-8 py-4">
+              <Link href="#assessment" className="btn-secondary px-8 py-4 text-lg">
                 Learn More
               </Link>
             </div>
