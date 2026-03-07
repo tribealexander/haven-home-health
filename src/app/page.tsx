@@ -92,10 +92,10 @@ const testimonials = [
 export default function Home() {
   return (
     <div className="min-h-screen bg-cream">
-      {/* Navigation */}
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-cream/95 backdrop-blur-sm border-b border-charcoal/5">
-        <div className="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
-          <Link href="/" className="text-2xl font-serif text-charcoal">
+      {/* Navigation - Floating */}
+      <nav className="fixed top-4 left-4 right-4 z-50">
+        <div className="max-w-6xl mx-auto bg-white/90 backdrop-blur-md rounded-full px-6 py-3 shadow-sm border border-charcoal/5 flex justify-between items-center">
+          <Link href="/" className="text-xl font-serif text-charcoal">
             Haven
           </Link>
           <div className="hidden md:flex items-center gap-8 text-sm">
@@ -108,7 +108,7 @@ export default function Home() {
             <Link href="#pricing" className="text-charcoal-light hover:text-charcoal transition-colors">
               Pricing
             </Link>
-            <Link href="#contact" className="btn-primary">
+            <Link href="#contact" className="btn-primary text-sm px-5 py-2">
               Book Assessment
             </Link>
           </div>
@@ -117,65 +117,49 @@ export default function Home() {
       </nav>
 
       {/* Hero */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+      <section className="relative min-h-screen overflow-hidden">
         {/* Abstract gradient background */}
         <div className="absolute inset-0">
           {/* Base warm gradient */}
-          <div className="absolute inset-0 bg-gradient-to-br from-cream via-cream-dark to-[#E8DFD4]" />
+          <div className="absolute inset-0 bg-gradient-to-br from-[#F5F0E8] via-cream-dark to-[#E8DFD4]" />
 
           {/* Soft organic shapes */}
-          <div className="absolute top-0 right-0 w-[800px] h-[800px] rounded-full bg-sage/[0.08] blur-3xl transform translate-x-1/3 -translate-y-1/4" />
-          <div className="absolute bottom-0 left-0 w-[600px] h-[600px] rounded-full bg-[#D4C4B0]/40 blur-3xl transform -translate-x-1/3 translate-y-1/4" />
-          <div className="absolute top-1/2 left-1/2 w-[500px] h-[500px] rounded-full bg-sage/[0.05] blur-2xl transform -translate-x-1/2 -translate-y-1/2" />
-
-          {/* Subtle texture overlay */}
-          <div className="absolute inset-0 opacity-30" style={{
-            backgroundImage: `radial-gradient(circle at 2px 2px, rgba(125,139,117,0.1) 1px, transparent 0)`,
-            backgroundSize: '32px 32px'
-          }} />
+          <div className="absolute top-20 right-0 w-[600px] h-[600px] rounded-full bg-sage/[0.06] blur-3xl transform translate-x-1/4" />
+          <div className="absolute bottom-0 right-1/4 w-[500px] h-[500px] rounded-full bg-[#D4C4B0]/30 blur-3xl" />
+          <div className="absolute top-1/3 left-1/4 w-[400px] h-[400px] rounded-full bg-sage/[0.04] blur-2xl" />
         </div>
 
-        {/* Content */}
-        <div className="relative z-10 max-w-6xl mx-auto px-6 pt-24 pb-16 text-center">
+        {/* Content - Left aligned, upper portion */}
+        <div className="relative z-10 max-w-6xl mx-auto px-6 pt-40 md:pt-48 lg:pt-56">
           <AnimatedSection>
-            <p className="text-sage text-sm tracking-[0.2em] uppercase mb-8 font-medium">
-              Home Health Assessments
-            </p>
-          </AnimatedSection>
-
-          <AnimatedSection delay={0.1}>
-            <h1 className="text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-serif text-charcoal leading-[0.9] mb-8 tracking-tight">
-              YOUR HOME
+            <h1
+              className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-serif text-charcoal leading-[1.1] tracking-tight max-w-4xl"
+              style={{
+                textShadow: '0 2px 10px rgba(28, 28, 28, 0.06)'
+              }}
+            >
+              Home Health
               <br />
-              <span className="italic text-charcoal/80">SHOULD BE</span>
+              For Now
               <br />
-              YOUR HAVEN
+              Or Forever
             </h1>
           </AnimatedSection>
 
           <AnimatedSection delay={0.2}>
-            <p className="text-lg md:text-xl text-warm-gray max-w-xl mx-auto mb-12 leading-relaxed">
-              Radon. Air quality. Water contaminants. We find what&apos;s hidden—and help you fix it.
+            <p className="text-lg text-warm-gray max-w-md mt-8 leading-relaxed">
+              Radon. Air quality. Water contaminants. We find what&apos;s hidden in your home—and help you fix it.
             </p>
           </AnimatedSection>
 
           <AnimatedSection delay={0.3}>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link href="#contact" className="btn-primary px-10 py-4 text-lg">
+            <div className="flex flex-col sm:flex-row gap-4 mt-10">
+              <Link href="#contact" className="btn-primary px-8 py-4">
                 Book Your Assessment
               </Link>
-              <Link href="#assessment" className="btn-secondary px-10 py-4 text-lg">
+              <Link href="#assessment" className="btn-secondary px-8 py-4">
                 Learn More
               </Link>
-            </div>
-          </AnimatedSection>
-        </div>
-
-        {/* Scroll indicator */}
-        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-10">
-          <AnimatedSection delay={0.5}>
-            <div className="w-6 h-10 border-2 border-charcoal/20 rounded-full flex justify-center pt-2">
-              <div className="w-1 h-2 bg-charcoal/40 rounded-full animate-bounce" />
             </div>
           </AnimatedSection>
         </div>
