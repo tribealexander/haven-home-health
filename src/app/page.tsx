@@ -117,33 +117,65 @@ export default function Home() {
       </nav>
 
       {/* Hero */}
-      <section className="pt-32 pb-20 px-6">
-        <div className="max-w-4xl mx-auto text-center">
+      <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+        {/* Abstract gradient background */}
+        <div className="absolute inset-0">
+          {/* Base warm gradient */}
+          <div className="absolute inset-0 bg-gradient-to-br from-cream via-cream-dark to-[#E8DFD4]" />
+
+          {/* Soft organic shapes */}
+          <div className="absolute top-0 right-0 w-[800px] h-[800px] rounded-full bg-sage/[0.08] blur-3xl transform translate-x-1/3 -translate-y-1/4" />
+          <div className="absolute bottom-0 left-0 w-[600px] h-[600px] rounded-full bg-[#D4C4B0]/40 blur-3xl transform -translate-x-1/3 translate-y-1/4" />
+          <div className="absolute top-1/2 left-1/2 w-[500px] h-[500px] rounded-full bg-sage/[0.05] blur-2xl transform -translate-x-1/2 -translate-y-1/2" />
+
+          {/* Subtle texture overlay */}
+          <div className="absolute inset-0 opacity-30" style={{
+            backgroundImage: `radial-gradient(circle at 2px 2px, rgba(125,139,117,0.1) 1px, transparent 0)`,
+            backgroundSize: '32px 32px'
+          }} />
+        </div>
+
+        {/* Content */}
+        <div className="relative z-10 max-w-6xl mx-auto px-6 pt-24 pb-16 text-center">
           <AnimatedSection>
-            <p className="text-sage text-sm tracking-widest uppercase mb-6">
-              Home Health Assessments for Ontario
+            <p className="text-sage text-sm tracking-[0.2em] uppercase mb-8 font-medium">
+              Home Health Assessments
             </p>
           </AnimatedSection>
+
           <AnimatedSection delay={0.1}>
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-serif text-charcoal leading-tight mb-8">
-              Your home should be
+            <h1 className="text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-serif text-charcoal leading-[0.9] mb-8 tracking-tight">
+              YOUR HOME
               <br />
-              <span className="italic">your haven.</span>
+              <span className="italic text-charcoal/80">SHOULD BE</span>
+              <br />
+              YOUR HAVEN
             </h1>
           </AnimatedSection>
+
           <AnimatedSection delay={0.2}>
-            <p className="text-xl text-warm-gray max-w-2xl mx-auto mb-10 leading-relaxed">
-              Radon. Air quality. Water contaminants. Most homeowners have no idea what they&apos;re breathing, drinking, or being exposed to daily. We find out—and fix it.
+            <p className="text-lg md:text-xl text-warm-gray max-w-xl mx-auto mb-12 leading-relaxed">
+              Radon. Air quality. Water contaminants. We find what&apos;s hidden—and help you fix it.
             </p>
           </AnimatedSection>
+
           <AnimatedSection delay={0.3}>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link href="#contact" className="btn-primary px-8 py-4 text-lg">
+              <Link href="#contact" className="btn-primary px-10 py-4 text-lg">
                 Book Your Assessment
               </Link>
-              <Link href="#assessment" className="btn-secondary px-8 py-4 text-lg">
+              <Link href="#assessment" className="btn-secondary px-10 py-4 text-lg">
                 Learn More
               </Link>
+            </div>
+          </AnimatedSection>
+        </div>
+
+        {/* Scroll indicator */}
+        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-10">
+          <AnimatedSection delay={0.5}>
+            <div className="w-6 h-10 border-2 border-charcoal/20 rounded-full flex justify-center pt-2">
+              <div className="w-1 h-2 bg-charcoal/40 rounded-full animate-bounce" />
             </div>
           </AnimatedSection>
         </div>
