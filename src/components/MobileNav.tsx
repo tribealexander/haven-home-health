@@ -43,7 +43,7 @@ export function MobileNav() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.2 }}
-              className="fixed inset-0 bg-charcoal/50 z-50"
+              className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50"
               onClick={() => setIsOpen(false)}
             />
             <motion.div
@@ -51,7 +51,7 @@ export function MobileNav() {
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
               transition={{ type: "spring", damping: 25, stiffness: 200 }}
-              className="fixed top-0 right-0 bottom-0 w-72 bg-cream z-50 shadow-2xl"
+              className="fixed top-0 right-0 bottom-0 w-72 bg-cream z-[60] shadow-2xl"
             >
               <div className="p-6">
                 <div className="flex justify-between items-center mb-8">
