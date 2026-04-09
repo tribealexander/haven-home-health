@@ -16,11 +16,17 @@ import {
 import { AnimatedSection, StaggerContainer, StaggerItem } from "@/components/AnimatedSection";
 import { MobileNav } from "@/components/MobileNav";
 import { HavenIndex } from "@/components/HavenIndex";
+import { TiltCard } from "@/components/TiltCard";
+import { MagneticButton } from "@/components/MagneticButton";
+import { TextReveal } from "@/components/TextReveal";
+import { GlowButton } from "@/components/GlowButton";
+import { ShimmeringText } from "@/components/ShimmeringText";
+import { ProgressiveBlur } from "@/components/ProgressiveBlur";
 
 const assessmentItems = [
   {
     title: "Radon Testing",
-    desc: "We deploy professional monitors for 48+ hours to capture accurate readings—radon is the leading cause of lung cancer in non-smokers.",
+    desc: "We deploy a professional monitor for the full 90-day national standard—because radon is the leading cause of lung cancer in non-smokers, and short tests don't tell the real story.",
     Icon: Radiation,
   },
   {
@@ -108,9 +114,9 @@ export default function Home() {
             <Link href="#pricing" className="text-charcoal-light hover:text-charcoal transition-colors">
               Pricing
             </Link>
-            <Link href="#contact" className="btn-primary text-sm px-5 py-2">
+            <MagneticButton href="#contact" className="btn-primary text-sm px-5 py-2" radius={80} strength={0.3}>
               Book Assessment
-            </Link>
+            </MagneticButton>
           </div>
           <MobileNav />
         </div>
@@ -124,26 +130,37 @@ export default function Home() {
               Home Health Assessments for Ontario
             </p>
           </AnimatedSection>
-          <AnimatedSection delay={0.1}>
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-serif text-charcoal leading-tight mb-8">
-              Your home should be
-              <br />
-              <span className="italic">your haven.</span>
-            </h1>
-          </AnimatedSection>
-          <AnimatedSection delay={0.2}>
+          <div className="mb-8">
+            <TextReveal
+              text="Your home should be"
+              as="h1"
+              splitBy="words"
+              staggerDelay={0.06}
+              duration={0.6}
+              className="text-5xl md:text-6xl lg:text-7xl font-serif text-charcoal leading-tight"
+            />
+            <TextReveal
+              text="your haven."
+              as="h1"
+              splitBy="words"
+              staggerDelay={0.08}
+              duration={0.6}
+              className="text-5xl md:text-6xl lg:text-7xl font-serif text-charcoal leading-tight italic"
+            />
+          </div>
+          <AnimatedSection delay={0.4}>
             <p className="text-xl text-warm-gray max-w-2xl mx-auto mb-10 leading-relaxed">
               Radon. Air quality. Water contaminants. Most homeowners have no idea what they&apos;re breathing, drinking, or being exposed to daily. We find out—and fix it.
             </p>
           </AnimatedSection>
-          <AnimatedSection delay={0.3}>
+          <AnimatedSection delay={0.5}>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link href="#contact" className="btn-primary px-8 py-4 text-lg">
+              <MagneticButton href="#contact" className="btn-primary px-8 py-4 text-lg">
                 Book Your Assessment
-              </Link>
-              <Link href="#assessment" className="btn-secondary px-8 py-4 text-lg">
+              </MagneticButton>
+              <MagneticButton href="#assessment" className="btn-secondary px-8 py-4 text-lg">
                 Learn More
-              </Link>
+              </MagneticButton>
             </div>
           </AnimatedSection>
         </div>
@@ -170,14 +187,19 @@ export default function Home() {
                 <h3 className="font-serif text-2xl text-charcoal mb-6">What most homeowners miss:</h3>
                 <ul className="space-y-4">
                   {[
-                    { stat: "1 in 5", desc: "Ontario homes have elevated radon levels" },
-                    { stat: "43%", desc: "of Canadian homes have poor indoor air quality" },
-                    { stat: "80%", desc: "of water quality issues go undetected without testing" },
+                    { stat: "1 in 4", desc: "Ontario homes exceed the WHO radon guideline", source: "Health Canada Cross-Canada Radon Survey" },
+                    { stat: "50%+", desc: "of Canadian homes have higher indoor pollution than outdoor air", source: "Canadian Lung Association" },
+                    { stat: "70%+", desc: "of Ontario well owners didn't test their water last year", source: "Ontario Auditor General, 2024" },
                     { stat: "0%", desc: "of standard home inspections test for health hazards" },
                   ].map((item, i) => (
                     <li key={i} className="flex items-start gap-4">
                       <span className="text-2xl font-serif text-sage font-semibold min-w-[70px]">{item.stat}</span>
-                      <span className="text-charcoal-light">{item.desc}</span>
+                      <span className="text-charcoal-light">
+                        {item.desc}
+                        {item.source && (
+                          <span className="block text-xs text-warm-gray/60 mt-1 italic">{item.source}</span>
+                        )}
+                      </span>
                     </li>
                   ))}
                 </ul>
@@ -204,13 +226,11 @@ export default function Home() {
           <StaggerContainer className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {assessmentItems.map((item, i) => (
               <StaggerItem key={i}>
-                <div className="card h-full">
-                  <div className="icon-wrapper mb-4">
-                    <item.Icon size={24} strokeWidth={1.5} />
-                  </div>
-                  <h3 className="font-serif text-xl text-charcoal mb-3">{item.title}</h3>
-                  <p className="text-warm-gray">{item.desc}</p>
-                </div>
+                <TiltCard
+                  title={item.title}
+                  description={item.desc}
+                  Icon={item.Icon}
+                />
               </StaggerItem>
             ))}
           </StaggerContainer>
@@ -218,7 +238,8 @@ export default function Home() {
       </section>
 
       {/* Haven Index */}
-      <section className="py-20 px-6 bg-charcoal text-cream">
+      <section className="relative py-20 px-6 bg-charcoal text-cream">
+        <ProgressiveBlur side="top" strength={6} size="80px" tintColor="var(--background)" tintStrength={0.6} />
         <div className="max-w-5xl mx-auto">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <AnimatedSection>
@@ -252,6 +273,7 @@ export default function Home() {
             </AnimatedSection>
           </div>
         </div>
+        <ProgressiveBlur side="bottom" strength={6} size="80px" tintColor="var(--background)" tintStrength={0.6} />
       </section>
 
       {/* Haven Care */}
@@ -270,13 +292,11 @@ export default function Home() {
           <StaggerContainer className="grid md:grid-cols-3 gap-8">
             {havenCareItems.map((item, i) => (
               <StaggerItem key={i}>
-                <div className="card text-center h-full">
-                  <div className="icon-wrapper mx-auto mb-6">
-                    <item.Icon size={24} strokeWidth={1.5} />
-                  </div>
-                  <h3 className="font-serif text-xl text-charcoal mb-3">{item.title}</h3>
-                  <p className="text-warm-gray">{item.desc}</p>
-                </div>
+                <TiltCard
+                  title={item.title}
+                  description={item.desc}
+                  Icon={item.Icon}
+                />
               </StaggerItem>
             ))}
           </StaggerContainer>
@@ -289,7 +309,7 @@ export default function Home() {
                   <p className="text-warm-gray">Smart monitoring + bi-annual service + annual assessment</p>
                 </div>
                 <div className="text-right">
-                  <div className="text-3xl font-serif text-charcoal">$149<span className="text-lg text-warm-gray">/month</span></div>
+                  <div className="text-3xl font-serif text-charcoal"><ShimmeringText text="$149" color="var(--charcoal)" shimmerColor="var(--sage)" duration={3} repeatDelay={2} /><span className="text-lg text-warm-gray">/month</span></div>
                   <p className="text-sage text-sm">Includes equipment</p>
                 </div>
               </div>
@@ -299,7 +319,8 @@ export default function Home() {
       </section>
 
       {/* Circadian Lighting */}
-      <section className="py-20 px-6 bg-charcoal text-cream">
+      <section className="relative py-20 px-6 bg-charcoal text-cream">
+        <ProgressiveBlur side="top" strength={6} size="80px" tintColor="var(--background)" tintStrength={0.6} />
         <div className="max-w-5xl mx-auto">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <AnimatedSection>
@@ -348,7 +369,7 @@ export default function Home() {
                 <div className="border-t border-cream/10 pt-6">
                   <div className="flex justify-between items-center">
                     <div>
-                      <div className="text-2xl font-serif text-cream">$795</div>
+                      <div className="text-2xl font-serif text-cream"><ShimmeringText text="$795" color="var(--cream)" shimmerColor="var(--sage)" duration={3} repeatDelay={2} /></div>
                       <div className="text-cream/60 text-sm">Installed, hardware included</div>
                     </div>
                     <Link href="#contact" className="btn-sage">
@@ -360,6 +381,7 @@ export default function Home() {
             </AnimatedSection>
           </div>
         </div>
+        <ProgressiveBlur side="bottom" strength={6} size="80px" tintColor="var(--cream-dark)" tintStrength={0.6} />
       </section>
 
       {/* Pricing */}
@@ -381,7 +403,7 @@ export default function Home() {
                 <h3 className="font-serif text-2xl text-charcoal mb-2">Haven Assessment</h3>
                 <p className="text-warm-gray mb-6">Complete home health evaluation</p>
                 <div className="text-4xl font-serif text-charcoal mb-6">
-                  $1,495
+                  <ShimmeringText text="$1,495" color="var(--charcoal)" shimmerColor="var(--sage)" duration={3} repeatDelay={2} />
                   <span className="text-lg text-warm-gray font-sans"> + HST</span>
                 </div>
                 <ul className="space-y-3 mb-8 flex-grow">
@@ -399,9 +421,13 @@ export default function Home() {
                     </li>
                   ))}
                 </ul>
-                <Link href="#contact" className="btn-primary block w-full text-center py-4">
+                <GlowButton
+                  href="#contact"
+                  className="btn-primary block w-full text-center py-4"
+                  colors={["#7D8B75", "#5C6B54", "#B8860B", "#7D8B75"]}
+                >
                   Book Assessment
-                </Link>
+                </GlowButton>
               </div>
             </StaggerItem>
 
@@ -413,7 +439,7 @@ export default function Home() {
                 </div>
                 <p className="text-cream/70 mb-6">Assessment + first year of Haven Care</p>
                 <div className="text-4xl font-serif mb-6">
-                  $2,995
+                  <ShimmeringText text="$2,995" color="var(--cream)" shimmerColor="var(--sage)" duration={3} delay={0.5} repeatDelay={2} />
                   <span className="text-lg text-cream/70 font-sans"> + HST</span>
                 </div>
                 <ul className="space-y-3 mb-8 flex-grow">
@@ -431,9 +457,13 @@ export default function Home() {
                     </li>
                   ))}
                 </ul>
-                <Link href="#contact" className="btn-light block w-full text-center py-4">
+                <GlowButton
+                  href="#contact"
+                  className="btn-light block w-full text-center py-4"
+                  colors={["#7D8B75", "#B8860B", "#5C6B54", "#7D8B75"]}
+                >
                   Get Started
-                </Link>
+                </GlowButton>
               </div>
             </StaggerItem>
           </StaggerContainer>
